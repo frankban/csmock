@@ -1,0 +1,118 @@
+"options":
+  "extra_packages":
+    "description": "Space separated list of extra deb packages to install.\n"
+    "type": "string"
+    "default": ""
+  "package_status":
+    "default": "install"
+    "type": "string"
+    "description": "The status of service-affecting packages will be set to this value\
+      \ in the dpkg database. Valid values are \"install\" and \"hold\".\n"
+  "install_sources":
+    "description": "List of extra apt sources, per charm-helpers standard format (a\
+      \ yaml list of strings encoded as a string). Each source may be either a line\
+      \ that can be added directly to sources.list(5), or in the form ppa:<user>/<ppa-name>\
+      \ for adding Personal Package Archives, or a distribution component to enable.\n"
+    "type": "string"
+    "default": ""
+  "install_keys":
+    "description": "List of signing keys for install_sources package sources, per\
+      \ charmhelpers standard format (a yaml list of strings encoded as a string).\
+      \ The keys should be the full ASCII armoured GPG public keys. While GPG key\
+      \ ids are also supported and looked up on a keyserver, operators should be aware\
+      \ that this mechanism is insecure. null can be used if a standard package signing\
+      \ key is used that will already be installed on the machine, and for PPA sources\
+      \ where the package signing key is securely retrieved from Launchpad.\n"
+    "type": "string"
+    "default": ""
+  "port":
+    "type": "int"
+    "default": !!int "8047"
+    "description": |
+      The port on which the service will be listening for WebSocket
+      connections.
+  "log-level":
+    "type": "string"
+    "default": "info"
+    "description": "The log level to apply to jujushell itself."
+  "juju-addrs":
+    "type": "string"
+    "default": ""
+    "description": |
+      A space separated list of Juju controller addresses, including
+      ports. If not provided, the addresses will be obtained from the
+      hooks context.
+  "juju-cert":
+    "type": "string"
+    "default": "from-unit"
+    "description": |
+      The certificate to use when connecting to the Juju controller API.
+      If not provided, no certificate is used for the connection.
+      If it is set to "from-unit" (the default), then the certificate is
+      obtained from the unit agent file.
+  "dns-name":
+    "type": "string"
+    "default": ""
+    "description": |
+      The optional DNS name for Let's Encrypt, used when TLS is enabled.
+      If not empty, the TLS keys will be managed by Let's Encrypt and
+      therefore the service will run on port 443. As a consequence, the
+      port, tls-cert and tls-key charm options will be ignored.
+  "tls-cert":
+    "type": "string"
+    "default": ""
+    "description": |
+      The TLS certificate, if any. If tls is true and none is provided the
+      charm will use a self signed key.
+  "tls-key":
+    "type": "string"
+    "default": ""
+    "description": |
+      The TLS key, if any. If tls is true and none is provided the charm
+      will use a self signed key.
+  "tls":
+    "type": "boolean"
+    "default": !!bool "true"
+    "description": "Whether or not to serve jujushell behind TLS."
+  "lxc-quota-ram":
+    "type": "string"
+    "default": "256MB"
+    "description": "Memory quota for LXCs (supports kB, MB, GB, TB, PB and EB suffixes)."
+  "lxc-quota-cpu-cores":
+    "type": "int"
+    "default": !!int "1"
+    "description": "CPU quota for LXCs (cores)."
+  "lxc-quota-cpu-allowance":
+    "type": "string"
+    "default": "100%"
+    "description": "How much of the CPU can be used (percentage, or chunk of time,\
+      \ e.g. 25ms/100ms)."
+  "lxc-quota-processes":
+    "type": "int"
+    "default": !!int "200"
+    "description": "Number of processes allowed inside LXD containers."
+  "limit-termserver":
+    "type": "boolean"
+    "default": !!bool "false"
+    "description": "Whether or not to use the limited-functionality termserver."
+  "allowed-users":
+    "type": "string"
+    "default": ""
+    "description": |
+      A space separated list of user names that are allowed to access the
+      service. An empty list means that all users who can authenticate
+      against the controller are allowed. For external users, names must
+      include the "@external" suffix.
+  "session-timeout":
+    "type": "int"
+    "default": !!int "0"
+    "description": |
+      The number of minutes of inactivity to wait before expiring a
+      session and stopping user container instances. A zero value means
+      that the session never expires.
+  "welcome-message":
+    "type": "string"
+    "default": ""
+    "description": |
+      An optional message to be displayed when users start the shell
+      session.

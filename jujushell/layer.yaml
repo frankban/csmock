@@ -1,0 +1,21 @@
+"includes":
+- "layer:options"
+- "layer:basic"
+- "layer:apt"
+- "interface:http"
+- "interface:prometheus"
+"options":
+  "basic":
+    "packages":
+    - "python-yaml"
+    - "python3"
+    "use_venv": !!bool "true"
+    "include_system_packages": !!bool "true"
+  "jujushell": {}
+  "apt":
+    "full_version": !!bool "false"
+    "packages": []
+    "version_package": ""
+    "keys": []
+"repo": "https://github.com/juju/jujushell-charm"
+"is": "jujushell"
